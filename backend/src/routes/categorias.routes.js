@@ -9,5 +9,7 @@ const router = Router();
 //Create
 router.post("/newArea", categoriaController.createAreas);
 export default router;
-//Read
+//Get
 router.get("/getAreas", categoriaController.getAreas);
+//Put
+router.put("/updateAreas", categoriaController.updateAreas);

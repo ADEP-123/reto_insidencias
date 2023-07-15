@@ -20,7 +20,7 @@ const createAreas = (req, res) => {
     });
 }
 
-//Read
+//Get
 const getAreas = (req, res) => {
     const { id } = req.query
     if (id) {
@@ -44,12 +44,23 @@ const getAreas = (req, res) => {
     }
 }
 
-//Update
-
+//Put
+const updateAreas = (req, res) => {
+    const { id, area_name} = req.query
+    connection.query(/*sql*/`UPDATE areas SET area_nombre = ${area_name} WHERE area_id = ${id};`, (err, data) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        }
+        else {
+            res.json({ message: `Area actualizada con exito`, data });
+        }
+    });
+}
 
 
 
 export const methodsHTTP = {
     createAreas,
-    getAreas
+    getAreas,
+    updateAreas
 }
