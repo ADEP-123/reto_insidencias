@@ -338,7 +338,20 @@ const updateTipoEquipo = (req, res) => {
     );
 };
 
-
+// Delete
+const deleteTipoEquipo = (req, res) => {
+    const { id } = req.query;
+    connection.query(
+      /*sql*/ `DELETE FROM tipo_equipo WHERE tip_equip_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Tipo de equipo eliminado con éxito`, data });
+            }
+        }
+    );
+};
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -359,5 +372,5 @@ export const methodsHTTP = {
     createTipoEquipo,
     getTipoEquipo,
     updateTipoEquipo,
-
+    deleteTipoEquipo
 }
