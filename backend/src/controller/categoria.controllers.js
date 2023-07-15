@@ -568,6 +568,20 @@ const updateInsidencia = (req, res) => {
         }
     );
 };
+// Delete
+const deleteInsidencia = (req, res) => {
+    const { id } = req.query;
+    connection.query(
+        /*sql*/ `DELETE FROM insidencias WHERE id_insi = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Incidencia eliminada con éxito`, data });
+            }
+        }
+    );
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -600,5 +614,6 @@ export const methodsHTTP = {
     deleteTrainer,
     createInsidencia,
     getInsidencia,
-    updateInsidencia
+    updateInsidencia,
+    deleteInsidencia
 }

@@ -96,5 +96,6 @@ router.post("/newInsidencia", categoriaController.createInsidencia);
 router.get("/getInsidencia", categoriaController.getInsidencia);
 //Put
 router.put("/updateInsidencia", categoriaController.updateInsidencia);
-
+//Delete
+router.delete("/deleteInsidencia", categoriaController.deleteInsidencia);
 export default router;
