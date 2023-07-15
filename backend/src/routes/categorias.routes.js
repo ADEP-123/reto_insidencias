@@ -8,10 +8,23 @@ const router = Router();
  */
 //Create
 router.post("/newArea", categoriaController.createAreas);
-export default router;
 //Get
 router.get("/getAreas", categoriaController.getAreas);
 //Put
 router.put("/updateAreas", categoriaController.updateAreas);
 //Delete
 router.put("/deleteAreas", categoriaController.deleteAreas);
+
+/**
+ * ? CRUD Lugares
+ */
+//Create
+router.post("/newLugar", categoriaController.createLugar);
+//Get
+router.get("/getAreas", categoriaController.getAreas);
+//Put
+router.put("/updateAreas", categoriaController.updateAreas);
+//Delete
+router.put("/deleteAreas", categoriaController.deleteAreas);
+
+export default router;

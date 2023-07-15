@@ -8,8 +8,8 @@ const connection = getConnection();
 
 //Create
 const createAreas = (req, res) => {
-    const { area_name } = req.query
-    connection.query(/*sql*/`INSERT INTO areas (area_nombre) VALUES (${name_area});
+    const { nombre } = req.query
+    connection.query(/*sql*/`INSERT INTO areas (area_nombre) VALUES (${nombre});
     `, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -24,7 +24,7 @@ const createAreas = (req, res) => {
 const getAreas = (req, res) => {
     const { id } = req.query
     if (id) {
-        connection.query(/*sql*/`SELECT area_id AS id, area_nombre AS name_area FROM areas WHERE area_id = ${id};`, (err, data) => {
+        connection.query(/*sql*/`SELECT area_id AS id, area_nombre AS nombre FROM areas WHERE area_id = ${id};`, (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
             }
@@ -33,7 +33,7 @@ const getAreas = (req, res) => {
             }
         });
     } else {
-        connection.query(/*sql*/`SELECT area_id AS id, area_nombre AS name_area FROM areas;`, (err, data) => {
+        connection.query(/*sql*/`SELECT area_id AS id, area_nombre AS nombre FROM areas;`, (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
             }
@@ -46,8 +46,8 @@ const getAreas = (req, res) => {
 
 //Put
 const updateAreas = (req, res) => {
-    const { id, area_name} = req.body
-    connection.query(/*sql*/`UPDATE areas SET area_nombre = ${area_name} WHERE area_id = ${id};`, (err, data) => {
+    const { id, nombre} = req.body
+    connection.query(/*sql*/`UPDATE areas SET area_nombre = ${nombre} WHERE area_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         }
@@ -70,11 +70,29 @@ const deleteAreas = (req, res) => {
     });
 }
 
+/**
+ * ? CRUD LUGARES
+ */
+
+//Create
+const createLugar = (req, res) => {
+    const { area, nombre } = req.query
+    connection.query(/*sql*/`INSERT INTO lugares (area_lugar, lugar_nombre) VALUES (${area}, ${nombre});`, (err, data) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        }
+        else {
+            res.json({ message: `Lugar creado con exito`, data });
+        }
+    });
+}
+
 
 
 export const methodsHTTP = {
     createAreas,
     getAreas,
     updateAreas,
-    deleteAreas
+    deleteAreas,
+    createLugar
 }
