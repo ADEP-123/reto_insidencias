@@ -504,6 +504,25 @@ const deleteTrainer = (req, res) => {
     );
 };
 
+/**
+ * ? CRUD INSIDENCIA
+ */
+// Create
+const createInsidencia = (req, res) => {
+    const { categoria, tipo, descripcion, trainer, equipo } = req.body;
+    connection.query(
+        /*sql*/ `INSERT INTO insidencias (categoria_insi, tipo_insi, descr_insi, trainer_insi, equipo_insi)
+        VALUES ('${categoria}', '${tipo}', '${descripcion}', '${trainer}', '${equipo}')`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Incidencia creada con éxito`, data });
+            }
+        }
+    );
+};
+
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -532,5 +551,6 @@ export const methodsHTTP = {
     createTrainer,
     getTrainer,
     updateTrainer,
-    deleteTrainer
+    deleteTrainer,
+    createInsidencia
 }

@@ -87,4 +87,9 @@ router.put("/updateTrainer", categoriaController.updateTrainer);
 //Delete
 router.delete("/deleteTrainer", categoriaController.deleteTrainer);
 
+/**
+ * ? CRUD INSIDENCIA
+ */
+//Create
+router.post("/newInsidencia", categoriaController.createInsidencia);
 export default router;
