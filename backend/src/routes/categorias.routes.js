@@ -80,5 +80,7 @@ router.delete("/deleteEquipo", categoriaController.deleteEquipo);
  */
 //Create
 router.post("/newTrainer", categoriaController.createTrainer);
+//Get
+router.get("/getTrainer", categoriaController.getTrainer);
 
 export default router;

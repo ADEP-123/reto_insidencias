@@ -443,6 +443,37 @@ const createTrainer = (req, res) => {
         }
     );
 };
+// Get
+const getTrainer = (req, res) => {
+    const { id } = req.query;
+    if (id) {
+        connection.query(
+        /*sql*/ `SELECT train_id AS id, train_nombre AS nombre, email_personal AS email1, email_corporativo AS email2, telefono_movil AS tefMov, telefono_residencia AS tefRes, telefono_empresa AS tefEmpresa, telefono_movil_empresarial AS tefMovEmpres
+        FROM trainer
+        WHERE train_id = ${id}`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    } else {
+        connection.query(
+        /*sql*/ `SELECT train_id AS id, train_nombre AS nombre, email_personal AS email1, email_corporativo AS email2, telefono_movil AS tefMov, telefono_residencia AS tefRes, telefono_empresa AS tefEmpresa, telefono_movil_empresarial AS tefMovEmpres
+        FROM trainer`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    }
+};
+
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -468,5 +499,6 @@ export const methodsHTTP = {
     getEquipo,
     updateEquipo,
     deleteEquipo,
-    createTrainer
+    createTrainer,
+    getTrainer
 }
