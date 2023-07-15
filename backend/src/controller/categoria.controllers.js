@@ -75,7 +75,7 @@ const deleteAreas = (req, res) => {
 //Create
 const createLugar = (req, res) => {
     const { area, nombre } = req.body
-    connection.query(/*sql*/`INSERT INTO lugares (area_lugar, lugar_nombre) VALUES (${area}, ${nombre});`, (err, data) => {
+    connection.query(/*sql*/`INSERT INTO lugares (area_lugar, lugar_nombre) VALUES ('${area}', '${nombre}');`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         }

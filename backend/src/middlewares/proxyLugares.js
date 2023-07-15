@@ -1,20 +1,20 @@
 import express from 'express';
 import 'reflect-metadata';
 import { plainToClass } from 'class-transformer';
-import { areas } from '../controllerTS/areas.js';
+import { lugares } from '../controllerTS/lugares.js';
 
-const proxyAreas = express();
-proxyAreas.use((req, res, next) => {
+const proxyLugares = express();
+proxyLugares.use((req, res, next) => {
     let objeto;
     if (req.query) {
         objeto = req.query
     } else { objeto = req.body }
     try {
-        let data = plainToClass(areas, objeto, { excludeExtraneousValues: true });
+        let data = plainToClass(lugares, objeto, { excludeExtraneousValues: true });
         req.query = JSON.parse(JSON.stringify(data));
         next()
     } catch (err) {
         res.status(err.status).send(err)
     }
 })
-export default proxyAreas;
+export default proxyLugares;
