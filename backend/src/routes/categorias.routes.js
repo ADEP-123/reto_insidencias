@@ -13,7 +13,7 @@ router.get("/getAreas", categoriaController.getAreas);
 //Put
 router.put("/updateAreas", categoriaController.updateAreas);
 //Delete
-router.put("/deleteAreas", categoriaController.deleteAreas);
+router.delete("/deleteAreas", categoriaController.deleteAreas);
 
 /**
  * ? CRUD Lugares
@@ -25,6 +25,6 @@ router.get("/getLugar", categoriaController.getLugar);
 //Put
 router.put("/updateLugar", categoriaController.updateLugar);
 //Delete
-//router.put("/deleteAreas", categoriaController.deleteAreas);
+router.delete("/deleteLugar", categoriaController.deleteLugar);
 
 export default router;

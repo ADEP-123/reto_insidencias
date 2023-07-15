@@ -124,6 +124,18 @@ const updateLugar = (req, res) => {
     });
 }
 
+//Delete
+const deleteLugar = (req, res) => {
+    const { id } = req.body
+    connection.query(/*sql*/`DELETE FROM lugares WHERE lugar_id = ${id};`, (err, data) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        }
+        else {
+            res.json({ message: `Lugar eliminado con exito`, data });
+        }
+    });
+}
 
 
 export const methodsHTTP = {
@@ -133,5 +145,6 @@ export const methodsHTTP = {
     deleteAreas,
     createLugar,
     getLugar,
-    updateLugar
+    updateLugar,
+    deleteLugar
 }
