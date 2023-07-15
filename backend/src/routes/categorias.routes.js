@@ -36,7 +36,7 @@ router.post("/newCategoria", categoriaController.createCategoria);
 router.get("/getCategoria", categoriaController.getCategoria);
 //Put
 router.put("/updateCategoria", categoriaController.updateCategoria);
-//DELETE
+//Delete
 router.delete("/deleteCategoria", categoriaController.deleteCategoria);
 
 /**
@@ -48,7 +48,7 @@ router.post("/newTipo", categoriaController.createTipo);
 router.get("/getTipo", categoriaController.getTipo);
 //Put
 router.put("/updateTipo", categoriaController.updateTipo);
-//DELETE
+//Delete
 router.delete("/deleteTipo", categoriaController.deleteTipo);
 
 /**
@@ -60,7 +60,7 @@ router.post("/newTipoEquipo", categoriaController.createTipoEquipo);
 router.get("/getTipoEquipo", categoriaController.getTipoEquipo);
 //Put
 router.put("/updateTipoEquipo", categoriaController.updateTipoEquipo);
-//DELETE
+//Delete
 router.delete("/deleteTipoEquipo", categoriaController.deleteTipoEquipo);
 
 /**
@@ -72,7 +72,7 @@ router.post("/newEquipo", categoriaController.createEquipo);
 router.get("/getEquipo", categoriaController.getEquipo);
 //Put
 router.put("/updateEquipo", categoriaController.updateEquipo);
-//DELETE
+//Delete
 router.delete("/deleteEquipo", categoriaController.deleteEquipo);
 
 /**
@@ -82,5 +82,7 @@ router.delete("/deleteEquipo", categoriaController.deleteEquipo);
 router.post("/newTrainer", categoriaController.createTrainer);
 //Get
 router.get("/getTrainer", categoriaController.getTrainer);
+//Put
+router.put("/updateTrainer", categoriaController.updateTrainer);
 
 export default router;

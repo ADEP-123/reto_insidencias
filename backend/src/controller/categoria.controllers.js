@@ -473,6 +473,22 @@ const getTrainer = (req, res) => {
         );
     }
 };
+// Update
+const updateTrainer = (req, res) => {
+    const { id, nombre, email1, email2, tefMov, tefRes, tefEmpresa, tefMovEmpres } = req.body;
+    connection.query(
+      /*sql*/ `UPDATE trainer
+      SET train_nombre = '${nombre}', email_personal = '${email1}', email_corporativo = '${email2}', telefono_movil = '${tefMov}', telefono_residencia = '${tefRes}', telefono_empresa = '${tefEmpresa}', telefono_movil_empresarial = '${tefMovEmpres}'
+      WHERE train_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Trainer actualizado con éxito`, data });
+            }
+        }
+    );
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -500,5 +516,6 @@ export const methodsHTTP = {
     updateEquipo,
     deleteEquipo,
     createTrainer,
-    getTrainer
+    getTrainer,
+    updateTrainer
 }
