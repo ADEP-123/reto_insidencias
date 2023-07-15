@@ -287,42 +287,58 @@ const createTipoEquipo = (req, res) => {
     const { nombre } = req.body;
     connection.query(
       /*sql*/ `INSERT INTO tipo_equipo (tip_equip_nombre) VALUES ('${nombre}')`,
-      (err, data) => {
-        if (err) {
-          res.status(500).json({ error: err.message });
-        } else {
-          res.json({ message: `Tipo de equipo creado con éxito`, data });
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Tipo de equipo creado con éxito`, data });
+            }
         }
-      }
     );
-  };
+};
 // Get
 const getTipoEquipo = (req, res) => {
     const { id } = req.query;
     if (id) {
-      connection.query(
+        connection.query(
         /*sql*/ `SELECT tip_equip_id AS id, tip_equip_nombre AS nombre FROM tipo_equipo WHERE tip_equip_id = ${id}`,
-        (err, data) => {
-          if (err) {
-            res.status(500).json({ error: err.message });
-          } else {
-            res.json({ message: `${data.length} registros encontrados`, data });
-          }
-        }
-      );
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
     } else {
-      connection.query(
+        connection.query(
         /*sql*/ `SELECT tip_equip_id AS id, tip_equip_nombre AS nombre FROM tipo_equipo`,
-        (err, data) => {
-          if (err) {
-            res.status(500).json({ error: err.message });
-          } else {
-            res.json({ message: `${data.length} registros encontrados`, data });
-          }
-        }
-      );
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
     }
-  };
+};
+// Update
+const updateTipoEquipo = (req, res) => {
+    const { id, nombre } = req.body;
+    connection.query(
+      /*sql*/ `UPDATE tipo_equipo SET tip_equip_nombre = '${nombre}' WHERE tip_equip_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Tipo de equipo actualizado con éxito`, data });
+            }
+        }
+    );
+};
+
+
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -341,5 +357,7 @@ export const methodsHTTP = {
     updateTipo,
     deleteTipo,
     createTipoEquipo,
-    getTipoEquipo
+    getTipoEquipo,
+    updateTipoEquipo,
+
 }
