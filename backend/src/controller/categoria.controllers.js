@@ -8,7 +8,7 @@ const connection = getConnection();
 
 //Create
 const createAreas = (req, res) => {
-    const { nombre } = req.query
+    const { nombre } = req.body
     connection.query(/*sql*/`INSERT INTO areas (area_nombre) VALUES (${nombre});
     `, (err, data) => {
         if (err) {
@@ -59,7 +59,7 @@ const updateAreas = (req, res) => {
 
 //Delete
 const deleteAreas = (req, res) => {
-    const { id } = req.body
+    const { id } = req.query
     connection.query(/*sql*/`DELETE FROM areas WHERE area_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -76,7 +76,7 @@ const deleteAreas = (req, res) => {
 
 //Create
 const createLugar = (req, res) => {
-    const { area, nombre } = req.query
+    const { area, nombre } = req.body
     connection.query(/*sql*/`INSERT INTO lugares (area_lugar, lugar_nombre) VALUES (${area}, ${nombre});`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -126,7 +126,7 @@ const updateLugar = (req, res) => {
 
 //Delete
 const deleteLugar = (req, res) => {
-    const { id } = req.body
+    const { id } = req.query
     connection.query(/*sql*/`DELETE FROM lugares WHERE lugar_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -143,7 +143,7 @@ const deleteLugar = (req, res) => {
 
 // Create
 const createCategoria = (req, res) => {
-    const { nombre } = req.query;
+    const { nombre } = req.body;
     connection.query(
       /*sql*/ `INSERT INTO categoria (cat_nombre) VALUES (${nombre})`,
         (err, data) => {
@@ -199,7 +199,20 @@ const updateCategoria = (req, res) => {
     );
 };
 
-
+// Delete
+const deleteCategoria = (req, res) => {
+    const { id } = req.query;
+    connection.query(
+      /*sql*/ `DELETE FROM categoria WHERE cat_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Categoría eliminada con éxito`, data });
+            }
+        }
+    );
+};
 
 
 export const methodsHTTP = {
@@ -213,5 +226,6 @@ export const methodsHTTP = {
     deleteLugar,
     createCategoria,
     getCategoria,
-    updateCategoria
+    updateCategoria,
+    deleteCategoria
 }
