@@ -6,6 +6,7 @@ import proxyLugares from '../middlewares/proxyLugares.js';
 import proxyCategoria from '../middlewares/proxyCategoria.js';
 import proxyTipo from '../middlewares/proxyTipo.js';
 import proxyEquipo from '../middlewares/proxyEquipo.js';
+import proxyTrainer from '../middlewares/proxyTrainer.js';
 
 const router = Router();
 
@@ -85,13 +86,13 @@ router.delete("/deleteEquipo", proxyEquipo, categoriaController.deleteEquipo);
  * ? CRUD TRAINER
  */
 //Create
-router.post("/newTrainer", categoriaController.createTrainer);
+router.post("/newTrainer", proxyTrainer, categoriaController.createTrainer);
 //Get
-router.get("/getTrainer", categoriaController.getTrainer);
+router.get("/getTrainer", proxyTrainer, categoriaController.getTrainer);
 //Put
-router.put("/updateTrainer", categoriaController.updateTrainer);
+router.put("/updateTrainer", proxyTrainer, categoriaController.updateTrainer);
 //Delete
-router.delete("/deleteTrainer", categoriaController.deleteTrainer);
+router.delete("/deleteTrainer", proxyTrainer, categoriaController.deleteTrainer);
 
 /**
  * ? CRUD INSIDENCIA
