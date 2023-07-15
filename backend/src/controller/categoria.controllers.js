@@ -87,6 +87,30 @@ const createLugar = (req, res) => {
     });
 }
 
+//Get
+const getLugar = (req, res) => {
+    const { id } = req.query
+    if (id) {
+        connection.query(/*sql*/`SELECT lugar_id AS id, area_lugar AS area, lugar_nombre AS nombre FROM lugares WHERE lugar_id = ${id};`, (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            }
+            else {
+                res.json({ message: `${data.length} registros encontrados`, data });
+            }
+        });
+    } else {
+        connection.query(/*sql*/`SELECT lugar_id AS id, area_lugar AS area, lugar_nombre AS nombre FROM lugares;`, (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            }
+            else {
+                res.json({ message: `${data.length} registros encontrados`, data });
+            }
+        });
+    }
+}
+
 
 
 export const methodsHTTP = {
@@ -94,5 +118,6 @@ export const methodsHTTP = {
     getAreas,
     updateAreas,
     deleteAreas,
-    createLugar
+    createLugar,
+    getLugar
 }

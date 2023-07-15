@@ -21,10 +21,10 @@ router.put("/deleteAreas", categoriaController.deleteAreas);
 //Create
 router.post("/newLugar", categoriaController.createLugar);
 //Get
-router.get("/getAreas", categoriaController.getAreas);
+router.get("/getLugar", categoriaController.getLugar);
 //Put
-router.put("/updateAreas", categoriaController.updateAreas);
+//router.put("/updateAreas", categoriaController.updateAreas);
 //Delete
-router.put("/deleteAreas", categoriaController.deleteAreas);
+//router.put("/deleteAreas", categoriaController.deleteAreas);
 
 export default router;
