@@ -369,7 +369,33 @@ const createEquipo = (req, res) => {
         }
     );
 };
-
+// Get
+const getEquipo = (req, res) => {
+    const { id } = req.query;
+    if (id) {
+        connection.query(
+        /*sql*/ `SELECT id_equipo AS id, tipo AS tipo_id, cantidad, lugar AS lugar_id FROM equipo WHERE id_equipo = '${id}'`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    } else {
+        connection.query(
+        /*sql*/ `SELECT id_equipo AS id, tipo AS tipo_id, cantidad, lugar AS lugar_id FROM equipo`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    }
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -392,5 +418,6 @@ export const methodsHTTP = {
     getTipoEquipo,
     updateTipoEquipo,
     deleteTipoEquipo,
-    createEquipo
+    createEquipo,
+    getEquipo
 }
