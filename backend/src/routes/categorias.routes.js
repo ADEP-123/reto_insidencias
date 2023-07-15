@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { methodsHTTP as categoriaController } from '../controller/categoria.controllers.js';
+import proxyTipoEquipo from '../middlewares/proxyTipoEquipo.js';
 
 const router = Router();
 
@@ -55,13 +56,13 @@ router.delete("/deleteTipo", categoriaController.deleteTipo);
  * ? CRUD TIPO EQUIPO
  */
 //Create
-router.post("/newTipoEquipo", categoriaController.createTipoEquipo);
+router.post("/newTipoEquipo", proxyTipoEquipo, categoriaController.createTipoEquipo);
 //Get
-router.get("/getTipoEquipo", categoriaController.getTipoEquipo);
+router.get("/getTipoEquipo", proxyTipoEquipo, categoriaController.getTipoEquipo);
 //Put
-router.put("/updateTipoEquipo", categoriaController.updateTipoEquipo);
+router.put("/updateTipoEquipo", proxyTipoEquipo, categoriaController.updateTipoEquipo);
 //Delete
-router.delete("/deleteTipoEquipo", categoriaController.deleteTipoEquipo);
+router.delete("/deleteTipoEquipo", proxyTipoEquipo, categoriaController.deleteTipoEquipo);
 
 /**
  * ? CRUD EQUIPO
