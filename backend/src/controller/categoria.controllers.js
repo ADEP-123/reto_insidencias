@@ -396,7 +396,20 @@ const getEquipo = (req, res) => {
         );
     }
 };
-
+// Update
+const updateEquipo = (req, res) => {
+    const { id, tipo_id, cantidad, lugar_id } = req.body;
+    connection.query(
+      /*sql*/ `UPDATE equipo SET tipo = ${tipo_id}, cantidad = ${cantidad}, lugar = ${lugar_id} WHERE id_equipo = '${id}'`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Equipo actualizado con éxito`, data });
+            }
+        }
+    );
+};
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -419,5 +432,6 @@ export const methodsHTTP = {
     updateTipoEquipo,
     deleteTipoEquipo,
     createEquipo,
-    getEquipo
+    getEquipo,
+    updateEquipo
 }
