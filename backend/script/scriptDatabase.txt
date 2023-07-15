@@ -101,3 +101,4 @@ CREATE TABLE
         CONSTRAINT fk_trainer_insidencias FOREIGN KEY (trainer_insi) REFERENCES trainer(train_id),
         CONSTRAINT fk_equipo_insidencias FOREIGN KEY (equipo_insi) REFERENCES equipo(id_equipo)
     );
+    
