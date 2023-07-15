@@ -140,7 +140,7 @@ const deleteLugar = (req, res) => {
 const createCategoria = (req, res) => {
     const { nombre } = req.body;
     connection.query(
-      /*sql*/ `INSERT INTO categoria (cat_nombre) VALUES (${nombre})`,
+      /*sql*/ `INSERT INTO categoria (cat_nombre) VALUES ('${nombre}')`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });

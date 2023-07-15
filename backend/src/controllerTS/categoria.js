@@ -8,11 +8,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose, Type, Transform } from "class-transformer";
-export class lugares {
-    constructor(lugar_id, area_lugar, lugar_nombre) {
-        this.id = lugar_id;
-        this.area = area_lugar;
-        this.nombre = lugar_nombre;
+export class categoria {
+    constructor(cat_id, cat_nombre) {
+        this.id = cat_id;
+        this.nombre = cat_nombre;
     }
 }
 __decorate([
@@ -22,17 +21,9 @@ __decorate([
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
-], lugares.prototype, "id", void 0);
-__decorate([
-    Expose({ name: "area" }),
-    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
-        return Math.floor(value);
-    else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
-    __metadata("design:type", Number)
-], lugares.prototype, "area", void 0);
+], categoria.prototype, "id", void 0);
 __decorate([
     Expose({ name: "nombre" }),
     Type(() => String),
     __metadata("design:type", String)
-], lugares.prototype, "nombre", void 0);
+], categoria.prototype, "nombre", void 0);

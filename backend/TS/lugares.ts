@@ -16,6 +16,7 @@ export class lugares {
 
     constructor(lugar_id: number, area_lugar: number, lugar_nombre: string) {
         this.id = lugar_id;
+        this.area = area_lugar;
         this.nombre = lugar_nombre;
     }
 }
