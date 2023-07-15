@@ -489,6 +489,20 @@ const updateTrainer = (req, res) => {
         }
     );
 };
+// Delete
+const deleteTrainer = (req, res) => {
+    const { id } = req.query;
+    connection.query(
+      /*sql*/ `DELETE FROM trainer WHERE train_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Trainer eliminado con éxito`, data });
+            }
+        }
+    );
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -517,5 +531,6 @@ export const methodsHTTP = {
     deleteEquipo,
     createTrainer,
     getTrainer,
-    updateTrainer
+    updateTrainer,
+    deleteTrainer
 }

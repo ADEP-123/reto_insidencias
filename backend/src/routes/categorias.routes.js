@@ -84,5 +84,7 @@ router.post("/newTrainer", categoriaController.createTrainer);
 router.get("/getTrainer", categoriaController.getTrainer);
 //Put
 router.put("/updateTrainer", categoriaController.updateTrainer);
+//Delete
+router.delete("/deleteTrainer", categoriaController.deleteTrainer);
 
 export default router;
