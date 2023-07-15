@@ -410,6 +410,20 @@ const updateEquipo = (req, res) => {
         }
     );
 };
+// Delete
+const deleteEquipo = (req, res) => {
+    const { id } = req.query;
+    connection.query(
+      /*sql*/ `DELETE FROM equipo WHERE id_equipo = '${id}'`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Equipo eliminado con éxito`, data });
+            }
+        }
+    );
+};
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -433,5 +447,6 @@ export const methodsHTTP = {
     deleteTipoEquipo,
     createEquipo,
     getEquipo,
-    updateEquipo
+    updateEquipo,
+    deleteEquipo
 }
