@@ -5,6 +5,7 @@ import proxyAreas from '../middlewares/proxyAreas.js';
 import proxyLugares from '../middlewares/proxyLugares.js';
 import proxyCategoria from '../middlewares/proxyCategoria.js';
 import proxyTipo from '../middlewares/proxyTipo.js';
+import proxyEquipo from '../middlewares/proxyEquipo.js';
 
 const router = Router();
 
@@ -72,13 +73,13 @@ router.delete("/deleteTipoEquipo", proxyTipoEquipo, categoriaController.deleteTi
  * ? CRUD EQUIPO
  */
 //Create
-router.post("/newEquipo", categoriaController.createEquipo);
+router.post("/newEquipo", proxyEquipo, categoriaController.createEquipo);
 //Get
-router.get("/getEquipo", categoriaController.getEquipo);
+router.get("/getEquipo", proxyEquipo, categoriaController.getEquipo);
 //Put
-router.put("/updateEquipo", categoriaController.updateEquipo);
+router.put("/updateEquipo", proxyEquipo, categoriaController.updateEquipo);
 //Delete
-router.delete("/deleteEquipo", categoriaController.deleteEquipo);
+router.delete("/deleteEquipo", proxyEquipo, categoriaController.deleteEquipo);
 
 /**
  * ? CRUD TRAINER

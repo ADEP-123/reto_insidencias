@@ -24,7 +24,7 @@ const createAreas = (req, res) => {
 const getAreas = (req, res) => {
     const { id } = req.query
     if (id) {
-        connection.query(/*sql*/`SELECT area_id AS id, area_nombre AS nombre FROM areas WHERE area_id = ${id};`, (err, data) => {
+        connection.query(/*sql*/`SELECT area_id AS id, area_nombre AS nombre FROM areas WHERE area_id = '${id}';`, (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
             }
@@ -58,7 +58,7 @@ const updateAreas = (req, res) => {
 //Delete
 const deleteAreas = (req, res) => {
     const { id } = req.query
-    connection.query(/*sql*/`DELETE FROM areas WHERE area_id = ${id};`, (err, data) => {
+    connection.query(/*sql*/`DELETE FROM areas WHERE area_id = '${id}';`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         }
@@ -88,7 +88,7 @@ const createLugar = (req, res) => {
 const getLugar = (req, res) => {
     const { id } = req.query
     if (id) {
-        connection.query(/*sql*/`SELECT lugar_id AS id, area_lugar AS area, lugar_nombre AS nombre FROM lugares WHERE lugar_id = ${id};`, (err, data) => {
+        connection.query(/*sql*/`SELECT lugar_id AS id, area_lugar AS area, lugar_nombre AS nombre FROM lugares WHERE lugar_id = '${id}';`, (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
             }
@@ -110,7 +110,7 @@ const getLugar = (req, res) => {
 //Put
 const updateLugar = (req, res) => {
     const { id, area, nombre } = req.body
-    connection.query(/*sql*/`UPDATE lugares SET area_lugar = ?, lugar_nombre = ? WHERE lugar_id = ${id};`, [area, nombre], (err, data) => {
+    connection.query(/*sql*/`UPDATE lugares SET area_lugar = '${area}', lugar_nombre = '${nombre}' WHERE lugar_id = '${id}';`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         }
@@ -122,7 +122,7 @@ const updateLugar = (req, res) => {
 //Delete
 const deleteLugar = (req, res) => {
     const { id } = req.query
-    connection.query(/*sql*/`DELETE FROM lugares WHERE lugar_id = ${id};`, (err, data) => {
+    connection.query(/*sql*/`DELETE FROM lugares WHERE lugar_id = '${id}';`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         }
@@ -155,7 +155,7 @@ const getCategoria = (req, res) => {
     const { id } = req.query;
     if (id) {
         connection.query(
-        /*sql*/ `SELECT cat_id AS id, cat_nombre AS nombre FROM categoria WHERE cat_id = ${id}`,
+        /*sql*/ `SELECT cat_id AS id, cat_nombre AS nombre FROM categoria WHERE cat_id = '${id}'`,
             (err, data) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
@@ -181,7 +181,7 @@ const getCategoria = (req, res) => {
 const updateCategoria = (req, res) => {
     const { id, nombre } = req.body;
     connection.query(
-      /*sql*/ `UPDATE categoria SET cat_nombre = '${nombre}' WHERE cat_id = ${id}`,
+      /*sql*/ `UPDATE categoria SET cat_nombre = '${nombre}' WHERE cat_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -195,7 +195,7 @@ const updateCategoria = (req, res) => {
 const deleteCategoria = (req, res) => {
     const { id } = req.query;
     connection.query(
-      /*sql*/ `DELETE FROM categoria WHERE cat_id = ${id}`,
+      /*sql*/ `DELETE FROM categoria WHERE cat_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -228,7 +228,7 @@ const getTipo = (req, res) => {
     const { id } = req.query;
     if (id) {
         connection.query(
-        /*sql*/ `SELECT tip_id AS id, tip_nombre AS nombre FROM tipo WHERE tip_id = ${id}`,
+        /*sql*/ `SELECT tip_id AS id, tip_nombre AS nombre FROM tipo WHERE tip_id = '${id}'`,
             (err, data) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
@@ -254,7 +254,7 @@ const getTipo = (req, res) => {
 const updateTipo = (req, res) => {
     const { id, nombre } = req.body;
     connection.query(
-      /*sql*/ `UPDATE tipo SET tip_nombre = '${nombre}' WHERE tip_id = ${id}`,
+      /*sql*/ `UPDATE tipo SET tip_nombre = '${nombre}' WHERE tip_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -268,7 +268,7 @@ const updateTipo = (req, res) => {
 const deleteTipo = (req, res) => {
     const { id } = req.query;
     connection.query(
-      /*sql*/ `DELETE FROM tipo WHERE tip_id = ${id}`,
+      /*sql*/ `DELETE FROM tipo WHERE tip_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -301,7 +301,7 @@ const getTipoEquipo = (req, res) => {
     const { id } = req.query;
     if (id) {
         connection.query(
-        /*sql*/ `SELECT tip_equip_id AS id, tip_equip_nombre AS nombre FROM tipo_equipo WHERE tip_equip_id = ${id}`,
+        /*sql*/ `SELECT tip_equip_id AS id, tip_equip_nombre AS nombre FROM tipo_equipo WHERE tip_equip_id = '${id}'`,
             (err, data) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
@@ -327,7 +327,7 @@ const getTipoEquipo = (req, res) => {
 const updateTipoEquipo = (req, res) => {
     const { id, nombre } = req.body;
     connection.query(
-      /*sql*/ `UPDATE tipo_equipo SET tip_equip_nombre = '${nombre}' WHERE tip_equip_id = ${id}`,
+      /*sql*/ `UPDATE tipo_equipo SET tip_equip_nombre = '${nombre}' WHERE tip_equip_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -341,7 +341,7 @@ const updateTipoEquipo = (req, res) => {
 const deleteTipoEquipo = (req, res) => {
     const { id } = req.query;
     connection.query(
-      /*sql*/ `DELETE FROM tipo_equipo WHERE tip_equip_id = ${id}`,
+      /*sql*/ `DELETE FROM tipo_equipo WHERE tip_equip_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -359,7 +359,7 @@ const deleteTipoEquipo = (req, res) => {
 const createEquipo = (req, res) => {
     const { id, tipo_id, cantidad, lugar_id } = req.body;
     connection.query(
-      /*sql*/ `INSERT INTO equipo (id_equipo, tipo, cantidad, lugar) VALUES ('${id}', ${tipo_id}, ${cantidad}, ${lugar_id})`,
+      /*sql*/ `INSERT INTO equipo (id_equipo, tipo, cantidad, lugar) VALUES ('${id}', '${tipo_id}', '${cantidad}', '${lugar_id}')`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -450,7 +450,7 @@ const getTrainer = (req, res) => {
         connection.query(
         /*sql*/ `SELECT train_id AS id, train_nombre AS nombre, email_personal AS email1, email_corporativo AS email2, telefono_movil AS tefMov, telefono_residencia AS tefRes, telefono_empresa AS tefEmpresa, telefono_movil_empresarial AS tefMovEmpres
         FROM trainer
-        WHERE train_id = ${id}`,
+        WHERE train_id = '${id}'`,
             (err, data) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
@@ -479,7 +479,7 @@ const updateTrainer = (req, res) => {
     connection.query(
       /*sql*/ `UPDATE trainer
       SET train_nombre = '${nombre}', email_personal = '${email1}', email_corporativo = '${email2}', telefono_movil = '${tefMov}', telefono_residencia = '${tefRes}', telefono_empresa = '${tefEmpresa}', telefono_movil_empresarial = '${tefMovEmpres}'
-      WHERE train_id = ${id}`,
+      WHERE train_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -493,7 +493,7 @@ const updateTrainer = (req, res) => {
 const deleteTrainer = (req, res) => {
     const { id } = req.query;
     connection.query(
-      /*sql*/ `DELETE FROM trainer WHERE train_id = ${id}`,
+      /*sql*/ `DELETE FROM trainer WHERE train_id = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -529,7 +529,7 @@ const getInsidencia = (req, res) => {
         connection.query(
             /*sql*/ `SELECT id_insi AS id, categoria_insi AS categoria, tipo_insi AS tipo, descr_insi AS descripcion, fecha_insi AS fecha, trainer_insi AS trainer, equipo_insi AS equipo
             FROM insidencias
-            WHERE id_insi = ${id}`,
+            WHERE id_insi = '${id}'`,
             (err, data) => {
                 if (err) {
                     res.status(500).json({ error: err.message });
@@ -558,7 +558,7 @@ const updateInsidencia = (req, res) => {
     connection.query(
         /*sql*/ `UPDATE insidencias
         SET categoria_insi = ${categoria}, tipo_insi = ${tipo}, descr_insi = '${descripcion}', trainer_insi = '${trainer}', equipo_insi = '${equipo}'
-        WHERE id_insi = ${id}`,
+        WHERE id_insi = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -572,7 +572,7 @@ const updateInsidencia = (req, res) => {
 const deleteInsidencia = (req, res) => {
     const { id } = req.query;
     connection.query(
-        /*sql*/ `DELETE FROM insidencias WHERE id_insi = ${id}`,
+        /*sql*/ `DELETE FROM insidencias WHERE id_insi = '${id}'`,
         (err, data) => {
             if (err) {
                 res.status(500).json({ error: err.message });
