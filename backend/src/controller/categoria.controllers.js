@@ -260,6 +260,21 @@ const getTipo = (req, res) => {
     }
 };
 
+// Update
+const updateTipo = (req, res) => {
+    const { id, nombre } = req.body;
+    connection.query(
+      /*sql*/ `UPDATE tipo SET tip_nombre = '${nombre}' WHERE tip_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Tipo actualizado con éxito`, data });
+            }
+        }
+    );
+};
+
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -274,5 +289,6 @@ export const methodsHTTP = {
     updateCategoria,
     deleteCategoria,
     createTipo,
-    getTipo
+    getTipo,
+    updateTipo
 }
