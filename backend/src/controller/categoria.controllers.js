@@ -275,6 +275,21 @@ const updateTipo = (req, res) => {
     );
 };
 
+// Delete
+const deleteTipo = (req, res) => {
+    const { id } = req.query;
+    connection.query(
+      /*sql*/ `DELETE FROM tipo WHERE tip_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Tipo eliminado con éxito`, data });
+            }
+        }
+    );
+};
+
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -290,5 +305,6 @@ export const methodsHTTP = {
     deleteCategoria,
     createTipo,
     getTipo,
-    updateTipo
+    updateTipo,
+    deleteTipo
 }

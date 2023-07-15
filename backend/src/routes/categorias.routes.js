@@ -48,4 +48,6 @@ router.post("/newTipo", categoriaController.createTipo);
 router.get("/getTipo", categoriaController.getTipo);
 //Put
 router.put("/updateTipo", categoriaController.updateTipo);
+//DELETE
+router.delete("/deleteTipo", categoriaController.deleteTipo);
 export default router;
