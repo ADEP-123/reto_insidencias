@@ -222,15 +222,43 @@ const createTipo = (req, res) => {
     const { nombre } = req.body;
     connection.query(
       /*sql*/ `INSERT INTO tipo (tip_nombre) VALUES ('${nombre}')`,
-      (err, data) => {
-        if (err) {
-          res.status(500).json({ error: err.message });
-        } else {
-          res.json({ message: `Tipo creado con éxito`, data });
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Tipo creado con éxito`, data });
+            }
         }
-      }
     );
-  };
+};
+
+// Get
+const getTipo = (req, res) => {
+    const { id } = req.query;
+    if (id) {
+        connection.query(
+        /*sql*/ `SELECT tip_id AS id, tip_nombre AS nombre FROM tipo WHERE tip_id = ${id}`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    } else {
+        connection.query(
+        /*sql*/ `SELECT tip_id AS id, tip_nombre AS nombre FROM tipo`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    }
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -245,5 +273,6 @@ export const methodsHTTP = {
     getCategoria,
     updateCategoria,
     deleteCategoria,
-    createTipo
+    createTipo,
+    getTipo
 }
