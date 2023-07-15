@@ -522,6 +522,36 @@ const createInsidencia = (req, res) => {
         }
     );
 };
+// Get
+const getInsidencia = (req, res) => {
+    const { id } = req.query;
+    if (id) {
+        connection.query(
+            /*sql*/ `SELECT id_insi AS id, categoria_insi AS categoria, tipo_insi AS tipo, descr_insi AS descripcion, fecha_insi AS fecha, trainer_insi AS trainer, equipo_insi AS equipo
+            FROM insidencias
+            WHERE id_insi = ${id}`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    } else {
+        connection.query(
+            /*sql*/ `SELECT id_insi AS id, categoria_insi AS categoria, tipo_insi AS tipo, descr_insi AS descripcion, fecha_insi AS fecha, trainer_insi AS trainer, equipo_insi AS equipo
+            FROM insidencias`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    }
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -552,5 +582,6 @@ export const methodsHTTP = {
     getTrainer,
     updateTrainer,
     deleteTrainer,
-    createInsidencia
+    createInsidencia,
+    getInsidencia
 }
