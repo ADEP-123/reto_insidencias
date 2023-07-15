@@ -3,4 +3,9 @@ import { methodsHTTP as categoriaController } from '../controller/categoria.cont
 
 const router = Router();
 
+/**
+ * ? CRUD AREAS
+ */
+//Create
+router.post("/newArea", categoriaController.createAreas);
 export default router;
