@@ -62,4 +62,10 @@ router.get("/getTipoEquipo", categoriaController.getTipoEquipo);
 router.put("/updateTipoEquipo", categoriaController.updateTipoEquipo);
 //DELETE
 router.delete("/deleteTipoEquipo", categoriaController.deleteTipoEquipo);
+
+/**
+ * ? CRUD EQUIPO
+ */
+//Create
+router.post("/newEquipo", categoriaController.createEquipo);
 export default router;

@@ -337,7 +337,6 @@ const updateTipoEquipo = (req, res) => {
         }
     );
 };
-
 // Delete
 const deleteTipoEquipo = (req, res) => {
     const { id } = req.query;
@@ -352,6 +351,26 @@ const deleteTipoEquipo = (req, res) => {
         }
     );
 };
+
+/**
+ * ? CRUD Equipo
+ */
+// Create
+const createEquipo = (req, res) => {
+    const { id, tipo_id, cantidad, lugar_id } = req.body;
+    connection.query(
+      /*sql*/ `INSERT INTO equipo (id_equipo, tipo, cantidad, lugar) VALUES ('${id}', ${tipo_id}, ${cantidad}, ${lugar_id})`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Equipo creado con éxito`, data });
+            }
+        }
+    );
+};
+
+
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -372,5 +391,6 @@ export const methodsHTTP = {
     createTipoEquipo,
     getTipoEquipo,
     updateTipoEquipo,
-    deleteTipoEquipo
+    deleteTipoEquipo,
+    createEquipo
 }
