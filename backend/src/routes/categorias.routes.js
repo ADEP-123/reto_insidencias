@@ -23,7 +23,7 @@ router.post("/newLugar", categoriaController.createLugar);
 //Get
 router.get("/getLugar", categoriaController.getLugar);
 //Put
-//router.put("/updateAreas", categoriaController.updateAreas);
+router.put("/updateLugar", categoriaController.updateLugar);
 //Delete
 //router.put("/deleteAreas", categoriaController.deleteAreas);
 

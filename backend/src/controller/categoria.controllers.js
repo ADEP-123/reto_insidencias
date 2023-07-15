@@ -46,7 +46,7 @@ const getAreas = (req, res) => {
 
 //Put
 const updateAreas = (req, res) => {
-    const { id, nombre} = req.body
+    const { id, nombre } = req.body
     connection.query(/*sql*/`UPDATE areas SET area_nombre = ${nombre} WHERE area_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -59,7 +59,7 @@ const updateAreas = (req, res) => {
 
 //Delete
 const deleteAreas = (req, res) => {
-    const {id} = req.body
+    const { id } = req.body
     connection.query(/*sql*/`DELETE FROM areas WHERE area_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -111,6 +111,19 @@ const getLugar = (req, res) => {
     }
 }
 
+//Put
+const updateLugar = (req, res) => {
+    const { id, area, nombre } = req.body
+    connection.query(/*sql*/`UPDATE lugares SET area_lugar = ?, lugar_nombre = ? WHERE lugar_id = ${id};`, [area, nombre], (err, data) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        }
+        else {
+            res.json({ message: `Lugar actualizado con exito`, data });
+        }
+    });
+}
+
 
 
 export const methodsHTTP = {
@@ -119,5 +132,6 @@ export const methodsHTTP = {
     updateAreas,
     deleteAreas,
     createLugar,
-    getLugar
+    getLugar,
+    updateLugar
 }
