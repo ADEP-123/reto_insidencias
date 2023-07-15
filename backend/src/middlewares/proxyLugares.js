@@ -6,7 +6,7 @@ import { lugares } from '../controllerTS/lugares.js';
 const proxyLugares = express();
 proxyLugares.use((req, res, next) => {
     let objeto;
-    if (req.query) {
+    if (Object.values(req.body).length == 0) {
         objeto = req.query
     } else { objeto = req.body }
     try {

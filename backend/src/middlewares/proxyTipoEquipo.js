@@ -6,7 +6,7 @@ import { tipo_equipo } from '../controllerTS/tipo_equipo.js';
 const proxyTipoEquipo = express();
 proxyTipoEquipo.use((req, res, next) => {
     let objeto;
-    if (req.body.length == 0) {
+    if (Object.values(req.body).length == 0) {
         objeto = req.query
     } else { objeto = req.body }
     try {
