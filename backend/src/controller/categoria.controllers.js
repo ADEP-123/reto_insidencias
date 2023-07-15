@@ -184,6 +184,21 @@ const getCategoria = (req, res) => {
     }
 };
 
+// Update
+const updateCategoria = (req, res) => {
+    const { id, nombre } = req.body;
+    connection.query(
+      /*sql*/ `UPDATE categoria SET cat_nombre = '${nombre}' WHERE cat_id = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Categoría actualizada con éxito`, data });
+            }
+        }
+    );
+};
+
 
 
 
@@ -197,5 +212,6 @@ export const methodsHTTP = {
     updateLugar,
     deleteLugar,
     createCategoria,
-    getCategoria
+    getCategoria,
+    updateCategoria
 }

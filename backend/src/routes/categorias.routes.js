@@ -34,5 +34,7 @@ router.delete("/deleteLugar", categoriaController.deleteLugar);
 router.post("/newCategoria", categoriaController.createCategoria);
 //Get
 router.get("/getCategoria", categoriaController.getCategoria);
+//Put
+router.put("/updateCategoria", categoriaController.updateCategoria);
 
 export default router;
