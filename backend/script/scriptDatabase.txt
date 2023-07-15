@@ -75,12 +75,12 @@ CREATE TABLE
     trainer(
         train_id VARCHAR(12) NOT NULL,
         train_nombre VARCHAR(60) NOT NULL,
-        email_personal VARCHAR(90),
-        email_corporativo VARCHAR(90),
-        telefono_movil VARCHAR(13),
+        email_personal VARCHAR(90) NOT NULL,
+        email_corporativo VARCHAR(90) NOT NULL,
+        telefono_movil VARCHAR(13) NOT NULL,
         telefono_residencia VARCHAR(13),
-        telefono_empresa VARCHAR(13),
-        telefono_movil_empresarial VARCHAR(13),
+        telefono_empresa VARCHAR(13) NOT NULL,
+        telefono_movil_empresarial VARCHAR(13) NOT NULL,
         CONSTRAINT pk_trainer PRIMARY KEY (train_id)
     );
 

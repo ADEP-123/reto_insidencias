@@ -74,4 +74,11 @@ router.get("/getEquipo", categoriaController.getEquipo);
 router.put("/updateEquipo", categoriaController.updateEquipo);
 //DELETE
 router.delete("/deleteEquipo", categoriaController.deleteEquipo);
+
+/**
+ * ? CRUD TRAINER
+ */
+//Create
+router.post("/newTrainer", categoriaController.createTrainer);
+
 export default router;

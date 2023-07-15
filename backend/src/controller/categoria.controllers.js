@@ -424,6 +424,25 @@ const deleteEquipo = (req, res) => {
         }
     );
 };
+
+/**
+ * ? CRUD TRAINER
+ */
+// Create
+const createTrainer = (req, res) => {
+    const { id, nombre, email1, email2, tefMov, tefRes, tefEmpresa, tefMovEmpres } = req.body;
+    connection.query(
+      /*sql*/ `INSERT INTO trainer (train_id, train_nombre, email_personal, email_corporativo, telefono_movil, telefono_residencia, telefono_empresa, telefono_movil_empresarial)
+      VALUES ('${id}','${nombre}', '${email1}', '${email2}', '${tefMov}', '${tefRes}', '${tefEmpresa}', '${tefMovEmpres}')`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Trainer creado con éxito`, data });
+            }
+        }
+    );
+};
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -448,5 +467,6 @@ export const methodsHTTP = {
     createEquipo,
     getEquipo,
     updateEquipo,
-    deleteEquipo
+    deleteEquipo,
+    createTrainer
 }
