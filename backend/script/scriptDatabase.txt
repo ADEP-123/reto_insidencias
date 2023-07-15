@@ -46,7 +46,7 @@ CREATE TABLE
 INSERT INTO
     lugares (area_lugar, lugar_nombre)
 VALUES (1, 'Apolo'), (1, 'Artemis'), (1, 'Sputnik'), (1, 'Skylab'), (2, 'Corvus'), (3, 'Endor');
-
+DROP TABLE tipo_equipo;
 CREATE TABLE
     tipo_equipo(
         tip_equip_id INT NOT NULL AUTO_INCREMENT,
@@ -57,10 +57,10 @@ CREATE TABLE
 INSERT INTO
     tipo_equipo (tip_equip_nombre)
 VALUES ('Cmputador'), ('Teclado'), ('Mouse'), ('Diadema');
-
+DROP TABLE equipo;
 CREATE TABLE
     equipo(
-        id_equipo INT NOT NULL,
+        id_equipo VARCHAR(25) NOT NULL,
         tipo INT NOT NULL,
         cantidad INT NOT NULL,
         lugar INT NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE
         descr_insi VARCHAR(250) NOT NULL,
         fecha_insi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         trainer_insi INT NOT NULL,
-        equipo_insi INT NOT NULL,
+        equipo_insi VARCHAR(25) NOT NULL,
         CONSTRAINT pk_insidencias PRIMARY KEY (id_insi),
         CONSTRAINT fk_categoria_insidencias FOREIGN KEY (categoria_insi) REFERENCES categoria(cat_id),
         CONSTRAINT fk_tipo_insidencias FOREIGN KEY (tipo_insi) REFERENCES tipo(tip_id),
