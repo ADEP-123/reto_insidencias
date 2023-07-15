@@ -1,0 +1,103 @@
+DROP DATABASE reto_insidencias;
+
+CREATE DATABASE
+    reto_insidencias DEFAULT CHARACTER SET = 'utf8mb4';
+
+USE reto_insidencias;
+
+CREATE TABLE
+    categoria(
+        cat_id INT NOT NULL AUTO_INCREMENT,
+        cat_nombre VARCHAR(10) NOT NULL UNIQUE,
+        CONSTRAINT pk_categoria PRIMARY KEY (cat_id)
+    );
+
+INSERT INTO categoria (cat_nombre) VALUES ('hardware'),('software');
+
+CREATE TABLE
+    tipo(
+        tip_id INT NOT NULL AUTO_INCREMENT,
+        tip_nombre VARCHAR(10) NOT NULL UNIQUE,
+        CONSTRAINT pk_tipo PRIMARY KEY (tip_id)
+    );
+
+INSERT INTO tipo (tip_nombre)
+VALUES ('leve'), ('moderada'), ('critica');
+
+CREATE TABLE
+    areas(
+        area_id INT NOT NULL AUTO_INCREMENT,
+        area_nombre VARCHAR(30) NOT NULL UNIQUE,
+        CONSTRAINT pk_area PRIMARY KEY (area_id)
+    );
+
+INSERT INTO areas (area_nombre)
+VALUES ('Area training'), ('Area Review 1'), ('Area Review 2');
+
+CREATE TABLE
+    lugares(
+        lugar_id INT NOT NULL AUTO_INCREMENT,
+        area_lugar INT NOT NULL,
+        lugar_nombre VARCHAR(30) NOT NULL,
+        CONSTRAINT pk_lugar PRIMARY KEY (lugar_id),
+        CONSTRAINT fk_area_lugar FOREIGN KEY (area_lugar) REFERENCES areas(area_id)
+    );
+
+INSERT INTO
+    lugares (area_lugar, lugar_nombre)
+VALUES (1, 'Apolo'), (1, 'Artemis'), (1, 'Sputnik'), (1, 'Skylab'), (2, 'Corvus'), (3, 'Endor');
+
+CREATE TABLE
+    tipo_equipo(
+        tip_equip_id INT NOT NULL AUTO_INCREMENT,
+        tip_equip_nombre VARCHAR(20),
+        CONSTRAINT pk_tipo_equipo PRIMARY KEY (tip_equip_id)
+    );
+
+INSERT INTO
+    tipo_equipo (tip_equip_nombre)
+VALUES ('Cmputador'), ('Teclado'), ('Mouse'), ('Diadema');
+
+CREATE TABLE
+    equipo(
+        id_equipo INT NOT NULL,
+        tipo INT NOT NULL,
+        cantidad INT NOT NULL,
+        lugar INT NOT NULL,
+        CONSTRAINT pk_equipo PRIMARY KEY (id_equipo),
+        CONSTRAINT fk_tipEquipo_equipo FOREIGN KEY (tipo) REFERENCES tipo_equipo(tip_equip_id),
+        CONSTRAINT fk_lugar_equipo FOREIGN KEY (lugar) REFERENCES lugares(lugar_id)
+    );
+
+DROP TABLE trainer;
+
+CREATE TABLE
+    trainer(
+        train_id INT NOT NULL,
+        train_nombre VARCHAR(60) NOT NULL,
+        email_personal VARCHAR(90),
+        email_corporativo VARCHAR(90),
+        telefono_movil VARCHAR(13),
+        telefono_residencia VARCHAR(13),
+        telefono_empresa VARCHAR(13),
+        telefono_movil_empresarial VARCHAR(13),
+        CONSTRAINT pk_trainer PRIMARY KEY (train_id)
+    );
+
+DROP TABLE insidencias;
+
+CREATE TABLE
+    insidencias(
+        id_insi INT NOT NULL AUTO_INCREMENT,
+        categoria_insi INT NOT NULL,
+        tipo_insi INT NOT NULL,
+        descr_insi VARCHAR(250) NOT NULL,
+        fecha_insi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        trainer_insi INT NOT NULL,
+        equipo_insi INT NOT NULL,
+        CONSTRAINT pk_insidencias PRIMARY KEY (id_insi),
+        CONSTRAINT fk_categoria_insidencias FOREIGN KEY (categoria_insi) REFERENCES categoria(cat_id),
+        CONSTRAINT fk_tipo_insidencias FOREIGN KEY (tipo_insi) REFERENCES tipo(tip_id),
+        CONSTRAINT fk_trainer_insidencias FOREIGN KEY (trainer_insi) REFERENCES trainer(train_id),
+        CONSTRAINT fk_equipo_insidencias FOREIGN KEY (equipo_insi) REFERENCES equipo(id_equipo)
+    );
