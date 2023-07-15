@@ -39,5 +39,9 @@ router.put("/updateCategoria", categoriaController.updateCategoria);
 //DELETE
 router.delete("/deleteCategoria", categoriaController.deleteCategoria);
 
-
+/**
+ * ? CRUD TIPO
+ */
+//Create
+router.post("/newTipo", categoriaController.createTipo);
 export default router;

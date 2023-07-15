@@ -214,6 +214,23 @@ const deleteCategoria = (req, res) => {
     );
 };
 
+/**
+ * ? CRUD TIPO
+ */
+// Create
+const createTipo = (req, res) => {
+    const { nombre } = req.body;
+    connection.query(
+      /*sql*/ `INSERT INTO tipo (tip_nombre) VALUES ('${nombre}')`,
+      (err, data) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+        } else {
+          res.json({ message: `Tipo creado con éxito`, data });
+        }
+      }
+    );
+  };
 
 export const methodsHTTP = {
     createAreas,
@@ -227,5 +244,6 @@ export const methodsHTTP = {
     createCategoria,
     getCategoria,
     updateCategoria,
-    deleteCategoria
+    deleteCategoria,
+    createTipo
 }
