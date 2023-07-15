@@ -156,6 +156,36 @@ const createCategoria = (req, res) => {
     );
 };
 
+// Get
+const getCategoria = (req, res) => {
+    const { id } = req.query;
+    if (id) {
+        connection.query(
+        /*sql*/ `SELECT cat_id AS id, cat_nombre AS nombre FROM categoria WHERE cat_id = ${id}`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    } else {
+        connection.query(
+        /*sql*/ `SELECT cat_id AS id, cat_nombre AS nombre FROM categoria`,
+            (err, data) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: `${data.length} registros encontrados`, data });
+                }
+            }
+        );
+    }
+};
+
+
+
 
 export const methodsHTTP = {
     createAreas,
@@ -166,5 +196,6 @@ export const methodsHTTP = {
     getLugar,
     updateLugar,
     deleteLugar,
-    createCategoria
+    createCategoria,
+    getCategoria
 }
