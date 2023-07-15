@@ -296,7 +296,33 @@ const createTipoEquipo = (req, res) => {
       }
     );
   };
-
+// Get
+const getTipoEquipo = (req, res) => {
+    const { id } = req.query;
+    if (id) {
+      connection.query(
+        /*sql*/ `SELECT tip_equip_id AS id, tip_equip_nombre AS nombre FROM tipo_equipo WHERE tip_equip_id = ${id}`,
+        (err, data) => {
+          if (err) {
+            res.status(500).json({ error: err.message });
+          } else {
+            res.json({ message: `${data.length} registros encontrados`, data });
+          }
+        }
+      );
+    } else {
+      connection.query(
+        /*sql*/ `SELECT tip_equip_id AS id, tip_equip_nombre AS nombre FROM tipo_equipo`,
+        (err, data) => {
+          if (err) {
+            res.status(500).json({ error: err.message });
+          } else {
+            res.json({ message: `${data.length} registros encontrados`, data });
+          }
+        }
+      );
+    }
+  };
 export const methodsHTTP = {
     createAreas,
     getAreas,
@@ -314,5 +340,6 @@ export const methodsHTTP = {
     getTipo,
     updateTipo,
     deleteTipo,
-    createTipoEquipo
+    createTipoEquipo,
+    getTipoEquipo
 }
