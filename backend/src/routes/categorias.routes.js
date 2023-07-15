@@ -7,6 +7,7 @@ import proxyCategoria from '../middlewares/proxyCategoria.js';
 import proxyTipo from '../middlewares/proxyTipo.js';
 import proxyEquipo from '../middlewares/proxyEquipo.js';
 import proxyTrainer from '../middlewares/proxyTrainer.js';
+import proxyInsidencias from '../middlewares/proxyInsidencias.js';
 
 const router = Router();
 
@@ -98,11 +99,11 @@ router.delete("/deleteTrainer", proxyTrainer, categoriaController.deleteTrainer)
  * ? CRUD INSIDENCIA
  */
 //Create
-router.post("/newInsidencia", categoriaController.createInsidencia);
+router.post("/newInsidencia", proxyInsidencias, categoriaController.createInsidencia);
 //Get
-router.get("/getInsidencia", categoriaController.getInsidencia);
+router.get("/getInsidencia", proxyInsidencias, categoriaController.getInsidencia);
 //Put
-router.put("/updateInsidencia", categoriaController.updateInsidencia);
+router.put("/updateInsidencia", proxyInsidencias, categoriaController.updateInsidencia);
 //Delete
-router.delete("/deleteInsidencia", categoriaController.deleteInsidencia);
+router.delete("/deleteInsidencia", proxyInsidencias, categoriaController.deleteInsidencia);
 export default router;
