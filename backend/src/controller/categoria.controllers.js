@@ -43,7 +43,6 @@ const getAreas = (req, res) => {
         });
     }
 }
-
 //Put
 const updateAreas = (req, res) => {
     const { id, nombre } = req.body
@@ -56,7 +55,6 @@ const updateAreas = (req, res) => {
         }
     });
 }
-
 //Delete
 const deleteAreas = (req, res) => {
     const { id } = req.query
@@ -86,7 +84,6 @@ const createLugar = (req, res) => {
         }
     });
 }
-
 //Get
 const getLugar = (req, res) => {
     const { id } = req.query
@@ -110,7 +107,6 @@ const getLugar = (req, res) => {
         });
     }
 }
-
 //Put
 const updateLugar = (req, res) => {
     const { id, area, nombre } = req.body
@@ -123,7 +119,6 @@ const updateLugar = (req, res) => {
         }
     });
 }
-
 //Delete
 const deleteLugar = (req, res) => {
     const { id } = req.query
@@ -155,7 +150,6 @@ const createCategoria = (req, res) => {
         }
     );
 };
-
 // Get
 const getCategoria = (req, res) => {
     const { id } = req.query;
@@ -183,7 +177,6 @@ const getCategoria = (req, res) => {
         );
     }
 };
-
 // Update
 const updateCategoria = (req, res) => {
     const { id, nombre } = req.body;
@@ -198,7 +191,6 @@ const updateCategoria = (req, res) => {
         }
     );
 };
-
 // Delete
 const deleteCategoria = (req, res) => {
     const { id } = req.query;
@@ -231,7 +223,6 @@ const createTipo = (req, res) => {
         }
     );
 };
-
 // Get
 const getTipo = (req, res) => {
     const { id } = req.query;
@@ -259,7 +250,6 @@ const getTipo = (req, res) => {
         );
     }
 };
-
 // Update
 const updateTipo = (req, res) => {
     const { id, nombre } = req.body;
@@ -274,7 +264,6 @@ const updateTipo = (req, res) => {
         }
     );
 };
-
 // Delete
 const deleteTipo = (req, res) => {
     const { id } = req.query;
@@ -289,6 +278,24 @@ const deleteTipo = (req, res) => {
         }
     );
 };
+
+/**
+ * ? CRUD TIPO EQUIPO
+ */
+// Create
+const createTipoEquipo = (req, res) => {
+    const { nombre } = req.body;
+    connection.query(
+      /*sql*/ `INSERT INTO tipo_equipo (tip_equip_nombre) VALUES ('${nombre}')`,
+      (err, data) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+        } else {
+          res.json({ message: `Tipo de equipo creado con éxito`, data });
+        }
+      }
+    );
+  };
 
 export const methodsHTTP = {
     createAreas,
@@ -306,5 +313,6 @@ export const methodsHTTP = {
     createTipo,
     getTipo,
     updateTipo,
-    deleteTipo
+    deleteTipo,
+    createTipoEquipo
 }
