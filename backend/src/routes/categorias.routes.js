@@ -4,6 +4,7 @@ import proxyTipoEquipo from '../middlewares/proxyTipoEquipo.js';
 import proxyAreas from '../middlewares/proxyAreas.js';
 import proxyLugares from '../middlewares/proxyLugares.js';
 import proxyCategoria from '../middlewares/proxyCategoria.js';
+import proxyTipo from '../middlewares/proxyTipo.js';
 
 const router = Router();
 
@@ -47,13 +48,13 @@ router.delete("/deleteCategoria", proxyCategoria, categoriaController.deleteCate
  * ? CRUD TIPO
  */
 //Create
-router.post("/newTipo", categoriaController.createTipo);
+router.post("/newTipo", proxyTipo, categoriaController.createTipo);
 //Get
-router.get("/getTipo", categoriaController.getTipo);
+router.get("/getTipo", proxyTipo, categoriaController.getTipo);
 //Put
-router.put("/updateTipo", categoriaController.updateTipo);
+router.put("/updateTipo", proxyTipo, categoriaController.updateTipo);
 //Delete
-router.delete("/deleteTipo", categoriaController.deleteTipo);
+router.delete("/deleteTipo", proxyTipo, categoriaController.deleteTipo);
 
 /**
  * ? CRUD TIPO EQUIPO
