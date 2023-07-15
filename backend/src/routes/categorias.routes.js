@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { methodsHTTP as categoriaController } from '../controller/categoria.controllers.js';
 import proxyTipoEquipo from '../middlewares/proxyTipoEquipo.js';
+import proxyAreas from '../middlewares/proxyAreas.js';
 
 const router = Router();
 
@@ -8,13 +9,13 @@ const router = Router();
  * ? CRUD AREAS
  */
 //Create
-router.post("/newArea", categoriaController.createAreas);
+router.post("/newArea", proxyAreas, categoriaController.createAreas);
 //Get
-router.get("/getAreas", categoriaController.getAreas);
+router.get("/getAreas", proxyAreas, categoriaController.getAreas);
 //Put
-router.put("/updateAreas", categoriaController.updateAreas);
+router.put("/updateAreas", proxyAreas, categoriaController.updateAreas);
 //Delete
-router.delete("/deleteAreas", categoriaController.deleteAreas);
+router.delete("/deleteAreas", proxyAreas, categoriaController.deleteAreas);
 
 /**
  * ? CRUD Lugares

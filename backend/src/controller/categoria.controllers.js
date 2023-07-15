@@ -9,7 +9,7 @@ const connection = getConnection();
 //Create
 const createAreas = (req, res) => {
     const { nombre } = req.body
-    connection.query(/*sql*/`INSERT INTO areas (area_nombre) VALUES (${nombre});
+    connection.query(/*sql*/`INSERT INTO areas (area_nombre) VALUES ('${nombre}');
     `, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -46,7 +46,7 @@ const getAreas = (req, res) => {
 //Put
 const updateAreas = (req, res) => {
     const { id, nombre } = req.body
-    connection.query(/*sql*/`UPDATE areas SET area_nombre = ${nombre} WHERE area_id = ${id};`, (err, data) => {
+    connection.query(/*sql*/`UPDATE areas SET area_nombre = '${nombre}' WHERE area_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         }
