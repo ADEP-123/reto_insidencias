@@ -27,4 +27,10 @@ router.put("/updateLugar", categoriaController.updateLugar);
 //Delete
 router.delete("/deleteLugar", categoriaController.deleteLugar);
 
+/**
+ * ? CRUD CATEGORIA
+ */
+//Create
+router.post("/newCategoria", categoriaController.createCategoria);
+
 export default router;

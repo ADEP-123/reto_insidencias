@@ -137,6 +137,25 @@ const deleteLugar = (req, res) => {
     });
 }
 
+/**
+ * ? CRUD CATEGORIA
+ */
+
+// Create
+const createCategoria = (req, res) => {
+    const { nombre } = req.query;
+    connection.query(
+      /*sql*/ `INSERT INTO categoria (cat_nombre) VALUES (${nombre})`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Categoría creada con éxito`, data });
+            }
+        }
+    );
+};
+
 
 export const methodsHTTP = {
     createAreas,
@@ -146,5 +165,6 @@ export const methodsHTTP = {
     createLugar,
     getLugar,
     updateLugar,
-    deleteLugar
+    deleteLugar,
+    createCategoria
 }
