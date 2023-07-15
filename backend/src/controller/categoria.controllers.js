@@ -46,7 +46,7 @@ const getAreas = (req, res) => {
 
 //Put
 const updateAreas = (req, res) => {
-    const { id, area_name} = req.query
+    const { id, area_name} = req.body
     connection.query(/*sql*/`UPDATE areas SET area_nombre = ${area_name} WHERE area_id = ${id};`, (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -57,10 +57,24 @@ const updateAreas = (req, res) => {
     });
 }
 
+//Delete
+const deleteAreas = (req, res) => {
+    const {id} = req.body
+    connection.query(/*sql*/`DELETE FROM areas WHERE area_id = ${id};`, (err, data) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        }
+        else {
+            res.json({ message: `Area eliminada con exito`, data });
+        }
+    });
+}
+
 
 
 export const methodsHTTP = {
     createAreas,
     getAreas,
-    updateAreas
+    updateAreas,
+    deleteAreas
 }

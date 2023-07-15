@@ -13,3 +13,5 @@ export default router;
 router.get("/getAreas", categoriaController.getAreas);
 //Put
 router.put("/updateAreas", categoriaController.updateAreas);
+//Delete
+router.put("/deleteAreas", categoriaController.deleteAreas);
