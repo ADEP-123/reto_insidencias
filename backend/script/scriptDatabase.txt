@@ -73,7 +73,7 @@ DROP TABLE trainer;
 
 CREATE TABLE
     trainer(
-        train_id INT NOT NULL,
+        train_id VARCHAR(12) NOT NULL,
         train_nombre VARCHAR(60) NOT NULL,
         email_personal VARCHAR(90),
         email_corporativo VARCHAR(90),
@@ -93,7 +93,7 @@ CREATE TABLE
         tipo_insi INT NOT NULL,
         descr_insi VARCHAR(250) NOT NULL,
         fecha_insi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        trainer_insi INT NOT NULL,
+        trainer_insi VARCHAR(12) NOT NULL,
         equipo_insi VARCHAR(25) NOT NULL,
         CONSTRAINT pk_insidencias PRIMARY KEY (id_insi),
         CONSTRAINT fk_categoria_insidencias FOREIGN KEY (categoria_insi) REFERENCES categoria(cat_id),
