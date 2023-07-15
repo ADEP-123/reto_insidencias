@@ -552,6 +552,22 @@ const getInsidencia = (req, res) => {
         );
     }
 };
+// Update
+const updateInsidencia = (req, res) => {
+    const { id, categoria, tipo, descripcion, trainer, equipo } = req.body;
+    connection.query(
+        /*sql*/ `UPDATE insidencias
+        SET categoria_insi = ${categoria}, tipo_insi = ${tipo}, descr_insi = '${descripcion}', trainer_insi = '${trainer}', equipo_insi = '${equipo}'
+        WHERE id_insi = ${id}`,
+        (err, data) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.json({ message: `Incidencia actualizada con éxito`, data });
+            }
+        }
+    );
+};
 
 export const methodsHTTP = {
     createAreas,
@@ -583,5 +599,6 @@ export const methodsHTTP = {
     updateTrainer,
     deleteTrainer,
     createInsidencia,
-    getInsidencia
+    getInsidencia,
+    updateInsidencia
 }

@@ -94,4 +94,7 @@ router.delete("/deleteTrainer", categoriaController.deleteTrainer);
 router.post("/newInsidencia", categoriaController.createInsidencia);
 //Get
 router.get("/getInsidencia", categoriaController.getInsidencia);
+//Put
+router.put("/updateInsidencia", categoriaController.updateInsidencia);
+
 export default router;
